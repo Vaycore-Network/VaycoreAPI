@@ -8,27 +8,34 @@ plugins:
   GameManager:
     url: gh:GameManagementAPI/GameManager:GameManager-1.21.11.jar
     fallback: https://github.com/GameManagementAPI/GameManager/releases/download/1.0.0/GameManager-1.21.11.jar
+    priority: 1
 
   GameLobby:
     url: gh:GameManagementAPI/GameLobby:GameLobby-1.21.11.jar
     fallback: https://github.com/GameManagementAPI/GameLobby/releases/download/v1.0.0/GameLobby-1.21.11.jar
+    priority: 2
 
   GameStats:
     url: gh:GameManagementAPI/GameStats:GameStats-1.21.11.jar
     fallback: https://github.com/GameManagementAPI/GameStats/releases/download/v1.0.0/GameStats-1.21.11.jar
+    priority: 2
 
   RankSystem:
     url: gh:Vaycore-Network/RankSystem:RankSystem-1.21.11.jar
     fallback: https://github.com/Vaycore-Network/RankSystem/releases/download/v1.0.0/RankSystem-1.21.11.jar
+    priority: 3
 
   ViaVersion:
     url: gh:ViaVersion/ViaVersion:ViaVersion-*.jar
+    priority: 1
 
   ViaBackwards:
     url: gh:ViaVersion/ViaBackwards:ViaBackwards-*.jar
+    priority: 2
 
   ViaRewind:
     url: gh:ViaVersion/ViaRewind:ViaRewind-*.jar
+    priority: 2
 
 
 # Language configuration

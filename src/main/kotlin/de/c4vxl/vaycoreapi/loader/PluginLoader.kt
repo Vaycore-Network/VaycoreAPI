@@ -46,8 +46,8 @@ object PluginLoader {
                     return@mapNotNull null
                 }
 
-                return@mapNotNull LoadablePlugin(name, url, section.getString("$name.fallback"))
-            }
+                return@mapNotNull LoadablePlugin(name, url, section.getString("$name.fallback")) to section.getInt("$name.priority", 9999)
+            }.sortedBy { it.second }.map { it.first }
         }
 
     /**
