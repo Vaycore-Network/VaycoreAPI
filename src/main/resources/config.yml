@@ -2,19 +2,24 @@
 # Format:
 # <plugin-name>:
 #   url: gh:<user/repo>:releaseFileName or <file url>
+#   [fallback: <fallback download url>]
 # Comment out plugins that you don't want to load by default
 plugins:
   GameManager:
     url: gh:GameManagementAPI/GameManager:GameManager-1.21.11.jar
+    fallback: https://github.com/GameManagementAPI/GameManager/releases/download/1.0.0/GameManager-1.21.11.jar
 
   GameLobby:
     url: gh:GameManagementAPI/GameLobby:GameLobby-1.21.11.jar
+    fallback: https://github.com/GameManagementAPI/GameLobby/releases/download/v1.0.0/GameLobby-1.21.11.jar
 
   GameStats:
     url: gh:GameManagementAPI/GameStats:GameStats-1.21.11.jar
+    fallback: https://github.com/GameManagementAPI/GameStats/releases/download/v1.0.0/GameStats-1.21.11.jar
 
   RankSystem:
     url: gh:Vaycore-Network/RankSystem:RankSystem-1.21.11.jar
+    fallback: https://github.com/Vaycore-Network/RankSystem/releases/download/v1.0.0/RankSystem-1.21.11.jar
 
   ViaVersion:
     url: gh:ViaVersion/ViaVersion:ViaVersion-*.jar

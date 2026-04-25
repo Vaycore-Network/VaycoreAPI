@@ -12,6 +12,7 @@ object PluginLoader {
     data class LoadablePlugin(
         val name: String,
         val url: String,
+        val fallbackURL: String?,
         val fileName: String = "$name.jar",
         val isFromGitHub: Boolean = url.startsWith("gh:")
     ) {
@@ -22,7 +23,10 @@ object PluginLoader {
             get() {
                 // Handle GitHub specific urls
                 if (isFromGitHub)
-                    return GithubUtils.latestReleaseFile(url)
+                    return GithubUtils.latestReleaseFile(url) ?: fallbackURL?.let {
+                        Main.logger.info("Found fallback url: $it")
+                        URI(it).toURL()
+                    }
 
                 // Handle normal url
                 return URI(url).toURL()
@@ -42,7 +46,7 @@ object PluginLoader {
                     return@mapNotNull null
                 }
 
-                return@mapNotNull LoadablePlugin(name, url)
+                return@mapNotNull LoadablePlugin(name, url, section.getString("$name.fallback"))
             }
         }
 
