@@ -1,8 +1,11 @@
+import net.minecrell.pluginyml.bukkit.BukkitPluginDescription
+
 plugins {
     kotlin("jvm") version "2.1.10"
     id("io.papermc.paperweight.userdev") version "2.0.0-beta.19"
     id("xyz.jpenilla.run-paper") version "3.0.2"
     id("net.minecrell.plugin-yml.bukkit") version "0.6.0"
+    `maven-publish`
 }
 
 group = "de.c4vxl"
@@ -38,6 +41,23 @@ paperweight {
     reobfArtifactConfiguration = io.papermc.paperweight.userdev.ReobfArtifactConfiguration.MOJANG_PRODUCTION
 }
 
+// Publishing
+publishing {
+    publications {
+        create<MavenPublication>("mavenJava") {
+            from(components["java"])
+
+            groupId = "$group"
+            artifactId = "vaycore-api"
+            version = "1.0.0"
+        }
+    }
+
+    repositories {
+        maven(layout.buildDirectory.dir("repo"))
+    }
+}
+
 // Plugin config
 bukkit {
     name = "VaycoreAPI"
@@ -48,6 +68,8 @@ bukkit {
 
     authors = listOf("c4vxl")
     website = "https://c4vxl.de/"
+
+    load = BukkitPluginDescription.PluginLoadOrder.STARTUP
 
     libraries = listOf(
         "org.jetbrains.kotlin:kotlin-stdlib:2.1.10",
