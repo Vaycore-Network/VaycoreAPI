@@ -36,8 +36,16 @@ object GithubUtils {
      * @param fileName The file to search for
      */
     fun getReleaseFileURL(release: String, fileName: String): URI? {
-        return """"browser_download_url"\s*:\s*"(https?://[^"]*${Regex.escape(fileName)})"""".toRegex()
-            .find(release)
+        val regexPattern = fileName
+            .replace(".", "\\.")   // escape dots first
+            .replace("*", ".*")    // wildcard -> regex
+            .let { Regex.escape(it).replace("\\.\\*".toRegex(), ".*") }
+
+        val regex = Regex(
+            """"browser_download_url"\s*:\s*"(https?://[^"]*$regexPattern)""""
+        )
+
+        return regex.find(release)
             ?.groupValues?.get(1)
             ?.let { URI(it) }
     }
