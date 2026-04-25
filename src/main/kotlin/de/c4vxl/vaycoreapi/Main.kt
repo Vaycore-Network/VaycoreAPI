@@ -27,15 +27,17 @@ class Main : JavaPlugin() {
                 .silentLogs(true)
                 .verboseOutput(false)
         )
-
-        // Download plugins
-        PluginLoader.deleteAllPlugins()
-        PluginLoader.downloadAllPlugins()
     }
 
     override fun onEnable() {
         // Enable CommandAPI
         CommandAPI.onEnable()
+
+        // Download plugins
+        server.scheduler.runTask(this, Runnable {
+            PluginLoader.deleteAllPlugins()
+            PluginLoader.downloadAllPlugins()
+        })
 
         logger.info("[+] $name has been enabled!")
     }

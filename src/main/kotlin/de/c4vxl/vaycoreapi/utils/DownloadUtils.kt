@@ -14,6 +14,7 @@ object DownloadUtils {
     fun downloadFile(url: URL, outputFile: File) {
         Main.logger.info("Downloading $url to $outputFile...")
 
+        outputFile.createNewFile()
         url.openStream().use { input ->
             FileOutputStream(outputFile).use { output ->
                 input.copyTo(output)

@@ -75,7 +75,9 @@ object PluginLoader {
 
         // Load plugin
         if (!Bukkit.getPluginManager().isPluginEnabled(plugin.name))
-            Bukkit.getPluginManager().loadPlugin(file)
+            Bukkit.getPluginManager().loadPlugin(file)?.let {
+                Bukkit.getPluginManager().enablePlugin(it)
+            }
     }
 
     /**
