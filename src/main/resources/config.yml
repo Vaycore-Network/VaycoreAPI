@@ -1,17 +1,3 @@
-# Plugins that should be downloaded
-# Format:
-# <plugin-name>:
-#   url: gh:<user/repo>:releaseFileName or <file url>
-#   [fallback: <fallback download url>]
-# Comment out plugins that you don't want to load by default
-plugins:
-  RankSystem:
-    url: gh:Vaycore-Network/RankSystem:RankSystem-1.21.11.jar
-    fallback: https://github.com/Vaycore-Network/RankSystem/releases/download/v1.0.0/RankSystem-1.21.11.jar
-    priority: 3
-
-  # etc
-
 # Language configuration
 language:
   # The default language

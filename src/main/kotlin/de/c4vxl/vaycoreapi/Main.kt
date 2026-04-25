@@ -1,6 +1,5 @@
 package de.c4vxl.vaycoreapi
 
-import de.c4vxl.vaycoreapi.loader.PluginLoader
 import dev.jorel.commandapi.CommandAPI
 import dev.jorel.commandapi.CommandAPIPaperConfig
 import org.bukkit.configuration.file.FileConfiguration
@@ -33,21 +32,12 @@ class Main : JavaPlugin() {
         // Enable CommandAPI
         CommandAPI.onEnable()
 
-        // Download plugins
-        server.scheduler.runTask(this, Runnable {
-            PluginLoader.deleteAllPlugins()
-            PluginLoader.downloadAllPlugins()
-        })
-
         logger.info("[+] $name has been enabled!")
     }
 
     override fun onDisable() {
         // Disable CommandAPI
         CommandAPI.onDisable()
-
-        // Delete all downloaded plugins
-        PluginLoader.deleteAllPlugins()
 
         logger.info("[+] $name has been disabled!")
     }
