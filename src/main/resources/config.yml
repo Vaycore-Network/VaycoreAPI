@@ -1,0 +1,17 @@
+# Plugins that should be downloaded
+# Format:
+# <filename>:
+#   url: gh:<user/repo>:releaseFileName or <file url>
+# Comment out plugins that you don't want to load by default
+plugins:
+  GameManager:
+    url: gh:GameManagementAPI/GameManager:GameManager-1.21.11.jar
+
+  GameLobby:
+    url: gh:GameManagementAPI/GameLobby:GameLobby-1.21.11.jar
+
+  GameStats:
+    url: gh:GameManagementAPI/GameStats:GameStats-1.21.11.jar
+
+  RankSystem:
+    url: gh:Vaycore-Network/RankSystem:RankSystem-1.21.11.jar

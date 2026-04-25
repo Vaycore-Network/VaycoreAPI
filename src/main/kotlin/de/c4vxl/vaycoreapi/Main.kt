@@ -1,7 +1,10 @@
 package de.c4vxl.vaycoreapi
 
+import de.c4vxl.vaycoreapi.loader.PluginLoader
 import dev.jorel.commandapi.CommandAPI
 import dev.jorel.commandapi.CommandAPIPaperConfig
+import org.bukkit.configuration.file.FileConfiguration
+import org.bukkit.plugin.Plugin
 import org.bukkit.plugin.java.JavaPlugin
 import java.util.logging.Logger
 
@@ -9,11 +12,15 @@ class Main : JavaPlugin() {
     companion object {
         lateinit var instance: Main
         lateinit var logger: Logger
+        lateinit var config: FileConfiguration
     }
 
     override fun onLoad() {
         instance = this
         Main.logger = this.logger
+
+        saveResource("config.yml", false)
+        Main.config = this.config
 
         // Load CommandAPI
         CommandAPI.onLoad(
@@ -21,6 +28,9 @@ class Main : JavaPlugin() {
                 .silentLogs(true)
                 .verboseOutput(false)
         )
+
+        // Download plugins
+        PluginLoader.downloadAllPlugins()
     }
 
     override fun onEnable() {
