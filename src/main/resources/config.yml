@@ -15,3 +15,16 @@ plugins:
 
   RankSystem:
     url: gh:Vaycore-Network/RankSystem:RankSystem-1.21.11.jar
+
+
+# Language configuration
+language:
+  # The default language
+  # used for console and players that don't have a specific language specified
+  default: "english"
+
+  # Path to file that stores player-languages
+  db: "./languages.yml"
+
+  # Path to directory where language translations will be stored
+  translations-dir: "./langs/"
