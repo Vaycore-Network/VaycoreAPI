@@ -15,6 +15,11 @@ repositories {
     mavenCentral()
     maven("https://repo.papermc.io/repository/maven-public/")
     maven("https://repo.codemc.io/repository/maven-public/")
+
+    maven {
+        name = "cloudnetRepositoryReleases"
+        url = uri("https://repo.cloudnetservice.eu/releases")
+    }
 }
 
 dependencies {
@@ -26,6 +31,9 @@ dependencies {
     // Command API
     implementation("dev.jorel:commandapi-paper-shade:11.1.0")
     implementation("dev.jorel:commandapi-kotlin-paper:11.1.0")
+
+    implementation("eu.cloudnetservice.cloudnet:driver-api:4.0.0-RC16")
+    implementation("eu.cloudnetservice.cloudnet:bridge-api:4.0.0-RC16")
 }
 
 kotlin {
