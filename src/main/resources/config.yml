@@ -1,6 +1,6 @@
 # Plugins that should be downloaded
 # Format:
-# <filename>:
+# <plugin-name>:
 #   url: gh:<user/repo>:releaseFileName or <file url>
 # Comment out plugins that you don't want to load by default
 plugins:

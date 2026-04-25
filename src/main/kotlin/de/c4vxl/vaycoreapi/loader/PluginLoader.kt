@@ -10,8 +10,9 @@ import java.net.URL
 
 object PluginLoader {
     data class LoadablePlugin(
-        val fileName: String,
+        val name: String,
         val url: String,
+        val fileName: String = "$name.jar",
         val isFromGitHub: Boolean = url.startsWith("gh:")
     ) {
         /**
@@ -35,13 +36,13 @@ object PluginLoader {
         get() {
             val section = Main.config.getConfigurationSection("plugins") ?: return emptyList()
 
-            return section.getKeys(false).mapNotNull { fileName ->
-                val url = section.getString("$fileName.url") ?: run {
-                    Main.logger.warning("Wrong format for plugin: '$fileName'. URL Missing!")
+            return section.getKeys(false).mapNotNull { name ->
+                val url = section.getString("$name.url") ?: run {
+                    Main.logger.warning("Wrong format for plugin: '$name'. URL Missing!")
                     return@mapNotNull null
                 }
 
-                return@mapNotNull LoadablePlugin("$fileName.jar", url)
+                return@mapNotNull LoadablePlugin(name, url)
             }
         }
 
@@ -58,7 +59,7 @@ object PluginLoader {
     fun downloadPlugin(plugin: LoadablePlugin) {
         // Get file download
         val downloadURL = plugin.downloadURL ?: run {
-            Main.logger.warning("Tried to download plugin '${plugin.fileName}'. But couldn't parse download url!")
+            Main.logger.warning("Tried to download plugin '${plugin.name}'. But couldn't parse download url!")
             return
         }
 
@@ -69,7 +70,8 @@ object PluginLoader {
         DownloadUtils.downloadFile(downloadURL, file)
 
         // Load plugin
-        Bukkit.getPluginManager().loadPlugin(file)
+        if (!Bukkit.getPluginManager().isPluginEnabled(plugin.name))
+            Bukkit.getPluginManager().loadPlugin(file)
     }
 
     /**
@@ -77,4 +79,13 @@ object PluginLoader {
      */
     fun downloadAllPlugins() =
         plugins.forEach { downloadPlugin(it) }
+
+    /**
+     * Deletes all plugins
+     */
+    fun deleteAllPlugins() {
+        plugins.forEach {
+            pluginsDir.resolve(it.fileName).delete()
+        }
+    }
 }

@@ -29,6 +29,7 @@ class Main : JavaPlugin() {
         )
 
         // Download plugins
+        PluginLoader.deleteAllPlugins()
         PluginLoader.downloadAllPlugins()
     }
 
@@ -42,6 +43,9 @@ class Main : JavaPlugin() {
     override fun onDisable() {
         // Disable CommandAPI
         CommandAPI.onDisable()
+
+        // Delete all downloaded plugins
+        PluginLoader.deleteAllPlugins()
 
         logger.info("[+] $name has been disabled!")
     }
