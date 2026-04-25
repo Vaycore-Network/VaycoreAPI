@@ -2,6 +2,7 @@ package de.c4vxl.vaycoreapi.utils
 
 import de.c4vxl.vaycoreapi.Main
 import java.net.URI
+import java.net.URL
 import java.net.http.HttpClient
 import java.net.http.HttpRequest
 import java.net.http.HttpResponse
@@ -73,7 +74,7 @@ object GithubUtils {
      * Returns a download link to a specific file in a repos last release
      * @param url The gh url (format: gh:user/repo:filename)
      */
-    fun latestReleaseFile(url: String): URI? {
+    fun latestReleaseFile(url: String): URL? {
         val parsed = parseGitHubURL(url) ?: return null
 
         // Get release
@@ -82,6 +83,6 @@ object GithubUtils {
             return null
         }
 
-        return getReleaseFileURL(release, parsed.second)
+        return getReleaseFileURL(release, parsed.second)?.toURL()
     }
 }
