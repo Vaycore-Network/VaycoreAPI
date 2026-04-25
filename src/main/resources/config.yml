@@ -16,6 +16,15 @@ plugins:
   RankSystem:
     url: gh:Vaycore-Network/RankSystem:RankSystem-1.21.11.jar
 
+  ViaVersion:
+    url: gh:ViaVersion/ViaVersion:ViaVersion-*.jar
+
+  ViaBackwards:
+    url: gh:ViaVersion/ViaBackwards:ViaBackwards-*.jar
+
+  ViaRewind:
+    url: gh:ViaVersion/ViaRewind:ViaRewind-*.jar
+
 
 # Language configuration
 language:
