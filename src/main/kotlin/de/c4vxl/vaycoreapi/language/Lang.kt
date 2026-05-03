@@ -40,7 +40,7 @@ class Lang<T : JavaPlugin>(
          * Returns the default language name
          */
         val defaultLang: String
-            get() = Main.config.getString("language.default") ?: "english"
+            get() = Main.config.getString("language.default") ?: "en"
 
         /**
          * Holds already loaded languages
